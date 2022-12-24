@@ -68,14 +68,6 @@ async function remove(id){
 }
 
 async function login(compte){
-  /*const rows = await db.query(
-    `SELECT CASE WHEN EXISTS (SELECT * FROM Compte WHERE Compte.email = ${compte.email} AND Compte.motDePasse = ${compte.motDePasse}) THEN 'TRUE' ELSE 'FALSE' END`
-  );
-  const result = helper.emptyOrRows(rows);
-
-  return {result};
-  */
-
   //const offset = helper.getOffset(page, config.listPerPage);
   const rows = await db.query(
     `SELECT CASE WHEN EXISTS(SELECT * FROM Compte WHERE Compte.email = "${compte.email}" AND Compte.motDePasse = "${compte.motDePasse}")THEN "TRUE" ELSE "FALSE" END
