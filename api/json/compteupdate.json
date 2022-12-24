@@ -1,0 +1,8 @@
+{
+    "pk_idCompte" : 10, 
+    "email" : "etudiant", 
+    "motDePasse": "etudiant", 
+    "dateCreation" : "2022-12-24", 
+    "etat": 0,
+    "supprimme" : 0
+}
