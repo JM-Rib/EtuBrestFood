@@ -5,7 +5,7 @@ const config = require('../config');
 async function getMultiple(page = 1){
   const offset = helper.getOffset(page, config.listPerPage);
   const rows = await db.query(
-    `SELECT * FROM Compte LIMIT ${offset},${config.listPerPage}`
+    `getMultipleRequest`
   );
   const data = helper.emptyOrRows(rows);
   const meta = {page};
@@ -16,36 +16,29 @@ async function getMultiple(page = 1){
   }
 }
 
-async function create(compte){
+async function create(nomFichier){
   const result = await db.query(
-    `INSERT INTO Compte (pk_idCompte, email, motDePasse, dateCreation, etat, supprimme) 
-    VALUES
-    (${compte.pk_idCompte}, ${compte.email}, ${compte.motDePasse}, ${compte.dateCreation}, ${compte.etat}, ${compte.supprimme})`
+    `createRequest`
   );
 
-  
-
-  let message = 'Error in creating compte';
+  let message = 'Error in creating nomFichier';
 
   if (result.affectedRows) {
-    message = 'Compte created successfully';
+    message = 'nomFichier created successfully';
   }
 
   return {message};
 }
 
-async function update(id, compte){
+async function update(id, nomFichier){
   const result = await db.query(
-    `UPDATE Compte 
-    SET pk_idCompte = '${compte.pk_idCompte}', email = '${compte.email}', motDePasse = '${compte.motDePasse}',
-    dateCreation = '${compte.dateCreation}', etat = '${compte.etat}', supprimme = '${compte.supprimme}' 
-    WHERE Compte.pk_idCompte = ${id};` 
+    `updateRequest` 
   );
 
-  let message = 'Error in updating programming language';
+  let message = 'Error in updating nomFichier';
 
   if (result.affectedRows) {
-    message = 'compte updated successfully';
+    message = 'nomFichier updated successfully';
   }
 
   return {message};
@@ -53,13 +46,13 @@ async function update(id, compte){
 
 async function remove(id){
   const result = await db.query(
-    `DELETE FROM Compte WHERE pk_idCompte=${id}`
+    `removeRequest`
   );
 
-  let message = 'Error in deleting compte';
+  let message = 'Error in deleting nomFichier';
 
   if (result.affectedRows) {
-    message = 'compte deleted successfully';
+    message = 'nomFichier deleted successfully';
   }
 
   return {message};

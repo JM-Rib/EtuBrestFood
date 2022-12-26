@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const s'inscrit = require('../services/s'inscrit');
+const sinscrit = require("../services/s'inscrit");
 
 /* GET s'inscrit */
 router.get('/', async function(req, res, next) {
   try {
-    res.json(await s'inscrit.getMultiple(req.query.page));
+    res.json(await sinscrit.getMultiple(req.query.page));
   } catch (err) {
     console.error(`Error while getting s'inscrits`, err.message);
     next(err);
@@ -15,7 +15,7 @@ router.get('/', async function(req, res, next) {
 /* POST s'inscrit */
 router.post('/', async function(req, res, next) {
   try {
-    res.json(await s'inscrit.create(req.body));
+    res.json(await sinscrit.create(req.body));
   } catch (err) {
     console.error(`Error while creating s'inscrit`, err.message);
     next(err);
@@ -25,7 +25,7 @@ router.post('/', async function(req, res, next) {
 /* PUT s'inscrit */
 router.put('/:id', async function(req, res, next) {
   try {
-    res.json(await s'inscrit.update(req.params.id, req.body));
+    res.json(await sinscrit.update(req.params.id, req.body));
   } catch (err) {
     console.error(`Error while updating s'inscrit`, err.message);
     next(err);
@@ -35,7 +35,7 @@ router.put('/:id', async function(req, res, next) {
 /* DELETE s'inscrit */
 router.delete('/:id', async function(req, res, next) {
   try {
-    res.json(await s'inscrit.remove(req.params.id));
+    res.json(await sinscrit.remove(req.params.id));
   } catch (err) {
     console.error(`Error while deleting s'inscrit`, err.message);
     next(err);

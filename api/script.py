@@ -26,7 +26,7 @@ def ecriture_routes(tables):
 	for table in tables[::2]:
 		fichier = table.lower()
 		patronRoutes = open("script/compteRoutes.js", "r")
-		routes = open("routes/"+fichier.lower()+".js", "w")
+		routes = open("routes/"+fichier+".js", "w")
 		for ligne in patronRoutes:
 			ligne = ligne.replace("compte", fichier)
 			routes.write(ligne)
@@ -34,20 +34,81 @@ def ecriture_routes(tables):
 		patronRoutes.close()
 		routes.close()
 
-def ecriture_services(tables):	
-	getMultiple = "SELECT * FROM Compte LIMIT ${offset},${config.listPerPage}"
-	create = "SELECT * FROM Compte LIMIT ${offset},${config.listPerPage}"
-	update = "SELECT * FROM Compte LIMIT ${offset},${config.listPerPage}"
+'''
+	getMultiple = "SELECT * FROM nomTable LIMIT ${offset},${config.listPerPage}" #remplacer nom table
+	create = "INSERT INTO Compte (pk_idCompte, email, motDePasse, dateCreation, etat, supprimme) VALUES (${compte.pk_idCompte}, ${compte.email}, ${compte.motDePasse}, ${compte.dateCreation}, ${compte.etat}, ${compte.supprimme})"
+	update = "UPDATE Compte SET pk_idCompte = '${compte.pk_idCompte}', email = '${compte.email}', motDePasse = '${compte.motDePasse}', dateCreation = '${compte.dateCreation}', etat = '${compte.etat}', supprimme = '${compte.supprimme}' WHERE Compte.pk_idCompte = ${id};"
 	remove = "DELETE FROM Compte WHERE pk_idCompte=${id}"
-	for table in tables[::2]
-		fichier = table.lower()
+'''
+
+def ecriture_services(tables):	
+	getMultiple = "SELECT * FROM nomTable LIMIT ${offset},${config.listPerPage}" #to be replaced : "nomTable"
+	create = "INSERT INTO nomTable intoElements VALUES valuesElements" #to be replaced : "nomTable", "intoElements", "valuesElements"
+	update = "UPDATE nomTable SET setElements WHERE nomTable.pk_id = ${id};" #to be replaced : "nomTable", "setElements", "pk_id"
+	remove = "DELETE FROM nomTable WHERE pk_id=${id}" #to be replaced : "nomTable", "pk_id"
+	getMultipleRequest = ""
+	createRequest = ""
+	updateRequest = ""
+	removeRequest = ""
+	
+	i = 0
+	lt = len(tables)
+	while i<lt:
+		fichier = tables[i].lower()
 		patronServices = open("script/compteServices.js", "r")
 		services = open("services/"+fichier.lower()+".js", "w")
-			
-		print(req)
 		
+		getMultipleRequest = getMultiple.replace("nomTable", tables[i]) # getMultiple: OK
+
+		intoElements = "("
+		valuesElements = "("
+		firstVariable = 1
+		for variable in tables[i+1]:
+			if firstVariable == 0:
+				intoElements += ", " #adds comma before each variable (unless it's the first one)
+				valuesElements += ", "
+			else:
+				firstVariable = 0 #no comma inserted before first variable 
+
+			intoElements += variable
+
+			valuesElements += "${" + fichier + "." + variable + "}"
+			
+		intoElements += ")"
+		valuesElements += ")"
+		
+		# create: OK
+		createRequest = create.replace("nomTable", tables[i]).replace("pk_id", tables[i+1][0]).replace("intoElements", intoElements).replace("valuesElements", valuesElements)	# update: OK
+
+		setElements = ""
+		firstVariable = 1
+		for variable in tables[i+1]: #builds string before adding it in the request
+			if firstVariable == 0:
+				setElements += ", " #adds comma before each variable (unless it's the first one)
+			else:
+				firstVariable = 0 #no comma inserted before first variable 
+
+			setElements += variable + " = '${" + fichier + "." + variable + "}'"
+
+		#uses built string to replace it in the request after the keyword "SET"
+		updateRequest = update.replace("nomTable", tables[i]).replace("pk_id", tables[i+1][0]).replace("setElements", setElements)	# update: OK
+
+		removeRequest = remove.replace("nomTable", tables[i]).replace("nomFichier", fichier).replace("pk_id", tables[i+1][0]) # remove: OK
+
+		for ligne in patronServices:
+			ligne = ligne.replace("nomFichier", fichier)
+			ligne = ligne.replace("getMultipleRequest", getMultipleRequest)
+			ligne = ligne.replace("createRequest", createRequest)
+			ligne = ligne.replace("updateRequest", updateRequest)
+			ligne = ligne.replace("removeRequest", removeRequest)
+			services.write(ligne)
+
+		str = "app.use(\"/compte\", compteRouter);"
+		print(str.replace("compte", fichier))
+
 		patronServices.close()
 		services.close()
+		i += 2
 
 
 if __name__ == '__main__':
