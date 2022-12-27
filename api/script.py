@@ -115,4 +115,4 @@ if __name__ == '__main__':
 	tables = process_sql_file("../../EtuBrestFood.sql" )
 	print(tables)
 	#ecriture_routes(tables)
-	ecriture_services(tables)
+	#ecriture_services(tables)
