@@ -1,43 +1,53 @@
 const express = require('express');
 const router = express.Router();
-const panier = require('../services/panier');
+const panier = require("../services/panier");
 
-/* GET panier */
+/* GET Panier */
 router.get('/', async function(req, res, next) {
   try {
     res.json(await panier.getMultiple(req.query.page));
   } catch (err) {
-    console.error(`Error while getting paniers`, err.message);
+    console.error(`Error while getting Panier`, err.message);
     next(err);
   }
 });
 
-/* POST panier */
+/* GET Panier spécifique*/
+router.get('/:id', async function(req, res, next) {
+  try {
+    res.json(await panier.getOne(req.params.id));
+  } catch (err) {
+    console.error(`Error while getting Panier`, err.message);
+    next(err);
+  }
+});
+
+/* POST Panier */
 router.post('/', async function(req, res, next) {
   try {
     res.json(await panier.create(req.body));
   } catch (err) {
-    console.error(`Error while creating panier`, err.message);
+    console.error(`Error while creating Panier`, err.message);
     next(err);
   }
 });
 
-/* PUT panier */
+/* PUT Panier */
 router.put('/:id', async function(req, res, next) {
   try {
     res.json(await panier.update(req.params.id, req.body));
   } catch (err) {
-    console.error(`Error while updating panier`, err.message);
+    console.error(`Error while updating Panier`, err.message);
     next(err);
   }
 });
 
-/* DELETE panier */
+/* DELETE Panier */
 router.delete('/:id', async function(req, res, next) {
   try {
     res.json(await panier.remove(req.params.id));
   } catch (err) {
-    console.error(`Error while deleting panier`, err.message);
+    console.error(`Error while deleting Panier`, err.message);
     next(err);
   }
 });

@@ -16,6 +16,17 @@ async function getMultiple(page = 1){
   }
 }
 
+async function getOne(id){
+  const rows = await db.query(
+    `SELECT * FROM S'inscrit WHERE fk_idEtudiants=${id}`
+  );
+  const data = helper.emptyOrRows(rows);
+
+  return {
+    data
+  }
+}
+
 async function create(sinscrit){
   const result = await db.query(
     `INSERT INTO S'inscrit (fk_idEtudiants, fk_idAnnonce) VALUES (${sinscrit.fk_idEtudiants}, ${sinscrit.fk_idAnnonce})`
@@ -60,6 +71,7 @@ async function remove(id){
 
 module.exports = {
   getMultiple,
+  getOne,
   create,
   update,
   remove

@@ -16,6 +16,17 @@ async function getMultiple(page = 1){
   }
 }
 
+async function getOne(id){
+  const rows = await db.query(
+    `SELECT * FROM Compte WHERE pk_idCompte=${id}`
+  );
+  const data = helper.emptyOrRows(rows);
+
+  return {
+    data
+  }
+}
+
 async function create(compte){
   console.log(`INSERT INTO Compte (pk_idCompte, email, motDePasse, dateCreation, etat, supprimme) VALUES (${compte.pk_idCompte}, ${compte.email}, ${compte.motDePasse}, ${compte.dateCreation}, ${compte.etat}, ${compte.supprimme})`);
 
@@ -24,8 +35,6 @@ async function create(compte){
     VALUES
     (${compte.pk_idCompte}, ${compte.email}, ${compte.motDePasse}, ${compte.dateCreation}, ${compte.etat}, ${compte.supprimme})`
   );
-
-  
 
   let message = 'Error in creating compte';
 
@@ -82,6 +91,7 @@ async function login(compte){
 
 module.exports = {
   getMultiple,
+  getOne,
   create,
   update,
   remove,

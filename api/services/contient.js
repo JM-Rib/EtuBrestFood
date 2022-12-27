@@ -16,6 +16,17 @@ async function getMultiple(page = 1){
   }
 }
 
+async function getOne(id){
+  const rows = await db.query(
+    `SELECT * FROM Contient WHERE fk_idProduit=${id}`
+  );
+  const data = helper.emptyOrRows(rows);
+
+  return {
+    data
+  }
+}
+
 async function create(contient){
   const result = await db.query(
     `INSERT INTO Contient (fk_idProduit, quantiteProDansPa, fk_idPanier) VALUES (${contient.fk_idProduit}, ${contient.quantiteProDansPa}, ${contient.fk_idPanier})`
@@ -60,6 +71,7 @@ async function remove(id){
 
 module.exports = {
   getMultiple,
+  getOne,
   create,
   update,
   remove

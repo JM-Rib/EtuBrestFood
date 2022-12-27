@@ -1,43 +1,53 @@
 const express = require('express');
 const router = express.Router();
-const compte = require('../services/compte');
+const nomVariable = require("../services/nomFichier");
 
-/* GET compte */
+/* GET nomTable */
 router.get('/', async function(req, res, next) {
   try {
-    res.json(await compte.getMultiple(req.query.page));
+    res.json(await nomVariable.getMultiple(req.query.page));
   } catch (err) {
-    console.error(`Error while getting comptes`, err.message);
+    console.error(`Error while getting nomTable`, err.message);
     next(err);
   }
 });
 
-/* POST compte */
+/* GET nomTable spécifique*/
+router.get('/:id', async function(req, res, next) {
+  try {
+    res.json(await nomVariable.getOne(req.params.id));
+  } catch (err) {
+    console.error(`Error while getting nomTable`, err.message);
+    next(err);
+  }
+});
+
+/* POST nomTable */
 router.post('/', async function(req, res, next) {
   try {
-    res.json(await compte.create(req.body));
+    res.json(await nomVariable.create(req.body));
   } catch (err) {
-    console.error(`Error while creating compte`, err.message);
+    console.error(`Error while creating nomTable`, err.message);
     next(err);
   }
 });
 
-/* PUT compte */
+/* PUT nomTable */
 router.put('/:id', async function(req, res, next) {
   try {
-    res.json(await compte.update(req.params.id, req.body));
+    res.json(await nomVariable.update(req.params.id, req.body));
   } catch (err) {
-    console.error(`Error while updating compte`, err.message);
+    console.error(`Error while updating nomTable`, err.message);
     next(err);
   }
 });
 
-/* DELETE compte */
+/* DELETE nomTable */
 router.delete('/:id', async function(req, res, next) {
   try {
-    res.json(await compte.remove(req.params.id));
+    res.json(await nomVariable.remove(req.params.id));
   } catch (err) {
-    console.error(`Error while deleting compte`, err.message);
+    console.error(`Error while deleting nomTable`, err.message);
     next(err);
   }
 });

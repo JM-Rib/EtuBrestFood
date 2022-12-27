@@ -16,6 +16,17 @@ async function getMultiple(page = 1){
   }
 }
 
+async function getOne(id){
+  const rows = await db.query(
+    `SELECT * FROM Annonce WHERE pk_idAnnonce=${id}`
+  );
+  const data = helper.emptyOrRows(rows);
+
+  return {
+    data
+  }
+}
+
 async function create(annonce){
   const result = await db.query(
     `INSERT INTO Annonce (pk_idAnnonce, description, photo) VALUES (${annonce.pk_idAnnonce}, ${annonce.description}, ${annonce.photo})`
@@ -60,6 +71,7 @@ async function remove(id){
 
 module.exports = {
   getMultiple,
+  getOne,
   create,
   update,
   remove

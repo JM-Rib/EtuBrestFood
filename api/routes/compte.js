@@ -12,6 +12,16 @@ router.get('/', async function(req, res, next) {
   }
 });
 
+/* GET compte spécifique*/
+router.get('/:id', async function(req, res, next) {
+  try {
+    res.json(await compte.getOne(req.params.id));
+  } catch (err) {
+    console.error(`Error while deleting compte`, err.message);
+    next(err);
+  }
+});
+
 /* POST compte */
 router.post('/', async function(req, res, next) {
   try {

@@ -16,6 +16,17 @@ async function getMultiple(page = 1){
   }
 }
 
+async function getOne(id){
+  const rows = await db.query(
+    `SELECT * FROM Administrateur WHERE pk_idAdministrateur=${id}`
+  );
+  const data = helper.emptyOrRows(rows);
+
+  return {
+    data
+  }
+}
+
 async function create(administrateur){
   const result = await db.query(
     `INSERT INTO Administrateur (pk_idAdministrateur, login, mdp, fk_idCompte) VALUES (${administrateur.pk_idAdministrateur}, ${administrateur.login}, ${administrateur.mdp}, ${administrateur.fk_idCompte})`
@@ -60,6 +71,7 @@ async function remove(id){
 
 module.exports = {
   getMultiple,
+  getOne,
   create,
   update,
   remove

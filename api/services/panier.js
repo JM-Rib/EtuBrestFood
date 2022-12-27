@@ -16,6 +16,17 @@ async function getMultiple(page = 1){
   }
 }
 
+async function getOne(id){
+  const rows = await db.query(
+    `SELECT * FROM Panier WHERE pk_idPanier=${id}`
+  );
+  const data = helper.emptyOrRows(rows);
+
+  return {
+    data
+  }
+}
+
 async function create(panier){
   const result = await db.query(
     `INSERT INTO Panier (pk_idPanier, nomPa, quantitePa, typePa, fk_idAnnonce) VALUES (${panier.pk_idPanier}, ${panier.nomPa}, ${panier.quantitePa}, ${panier.typePa}, ${panier.fk_idAnnonce})`
@@ -60,6 +71,7 @@ async function remove(id){
 
 module.exports = {
   getMultiple,
+  getOne,
   create,
   update,
   remove

@@ -28,7 +28,9 @@ def ecriture_routes(tables):
 		patronRoutes = open("script/compteRoutes.js", "r")
 		routes = open("routes/"+fichier+".js", "w")
 		for ligne in patronRoutes:
-			ligne = ligne.replace("compte", fichier)
+			ligne = ligne.replace("nomVariable", fichier.replace("'", ""))
+			ligne = ligne.replace("nomFichier", fichier)
+			ligne = ligne.replace("nomTable", table)
 			routes.write(ligne)
 		
 		patronRoutes.close()
@@ -43,10 +45,12 @@ def ecriture_routes(tables):
 
 def ecriture_services(tables):	
 	getMultiple = "SELECT * FROM nomTable LIMIT ${offset},${config.listPerPage}" #to be replaced : "nomTable"
+	getOne = "SELECT * FROM nomTable WHERE pk_id=${id}" #to be replaced : "nomTable", "pk_id"
 	create = "INSERT INTO nomTable intoElements VALUES valuesElements" #to be replaced : "nomTable", "intoElements", "valuesElements"
 	update = "UPDATE nomTable SET setElements WHERE nomTable.pk_id = ${id};" #to be replaced : "nomTable", "setElements", "pk_id"
 	remove = "DELETE FROM nomTable WHERE pk_id=${id}" #to be replaced : "nomTable", "pk_id"
 	getMultipleRequest = ""
+	getOneRequest = ""
 	createRequest = ""
 	updateRequest = ""
 	removeRequest = ""
@@ -60,6 +64,8 @@ def ecriture_services(tables):
 		
 		getMultipleRequest = getMultiple.replace("nomTable", tables[i]) # getMultiple: OK
 
+		getOneRequest = getOne.replace("nomTable", tables[i]).replace("pk_id", tables[i+1][0]) # remove: OK
+
 		intoElements = "("
 		valuesElements = "("
 		firstVariable = 1
@@ -72,7 +78,7 @@ def ecriture_services(tables):
 
 			intoElements += variable
 
-			valuesElements += "${" + fichier + "." + variable + "}"
+			valuesElements += "${" + fichier.replace("'", "") + "." + variable + "}"
 			
 		intoElements += ")"
 		valuesElements += ")"
@@ -88,7 +94,7 @@ def ecriture_services(tables):
 			else:
 				firstVariable = 0 #no comma inserted before first variable 
 
-			setElements += variable + " = '${" + fichier + "." + variable + "}'"
+			setElements += variable + " = '${" + fichier.replace("'", "") + "." + variable + "}'"
 
 		#uses built string to replace it in the request after the keyword "SET"
 		updateRequest = update.replace("nomTable", tables[i]).replace("pk_id", tables[i+1][0]).replace("setElements", setElements)	# update: OK
@@ -96,8 +102,9 @@ def ecriture_services(tables):
 		removeRequest = remove.replace("nomTable", tables[i]).replace("nomFichier", fichier).replace("pk_id", tables[i+1][0]) # remove: OK
 
 		for ligne in patronServices:
-			ligne = ligne.replace("nomFichier", fichier)
+			ligne = ligne.replace("nomFichier", fichier.replace("'", ""))
 			ligne = ligne.replace("getMultipleRequest", getMultipleRequest)
+			ligne = ligne.replace("getOneRequest", getOneRequest)
 			ligne = ligne.replace("createRequest", createRequest)
 			ligne = ligne.replace("updateRequest", updateRequest)
 			ligne = ligne.replace("removeRequest", removeRequest)
