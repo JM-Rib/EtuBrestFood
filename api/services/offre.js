@@ -29,7 +29,7 @@ async function getOne(id){
 
 async function create(offre){
   const result = await db.query(
-    `INSERT INTO Offre (pk_idOffre, dateheure, adresseOffre, recupParEtu) VALUES (${offre.pk_idOffre}, ${offre.dateheure}, ${offre.adresseOffre}, ${offre.recupParEtu})`
+    `INSERT INTO Offre (pk_idOffre, dateheure, recupParEtu, fk_idEtudiant, fk_idPanier) VALUES (${offre.pk_idOffre}, ${offre.dateheure}, ${offre.recupParEtu}, ${offre.fk_idEtudiant}, ${offre.fk_idPanier})`
   );
 
   let message = 'Error in creating offre';
@@ -43,7 +43,7 @@ async function create(offre){
 
 async function update(id, offre){
   const result = await db.query(
-    `UPDATE Offre SET pk_idOffre = '${offre.pk_idOffre}', dateheure = '${offre.dateheure}', adresseOffre = '${offre.adresseOffre}', recupParEtu = '${offre.recupParEtu}' WHERE Offre.pk_idOffre = ${id};` 
+    `UPDATE Offre SET pk_idOffre = '${offre.pk_idOffre}', dateheure = '${offre.dateheure}', recupParEtu = '${offre.recupParEtu}', fk_idEtudiant = '${offre.fk_idEtudiant}', fk_idPanier = '${offre.fk_idPanier}' WHERE Offre.pk_idOffre = ${id};` 
   );
 
   let message = 'Error in updating offre';

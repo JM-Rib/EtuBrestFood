@@ -29,7 +29,7 @@ async function getOne(id){
 
 async function create(panier){
   const result = await db.query(
-    `INSERT INTO Panier (pk_idPanier, nomPa, quantitePa, typePa, fk_idAnnonce) VALUES (${panier.pk_idPanier}, ${panier.nomPa}, ${panier.quantitePa}, ${panier.typePa}, ${panier.fk_idAnnonce})`
+    `INSERT INTO Panier (pk_idPanier, nomPa, quantitePa, adressePanier, typePa, fk_idAnnonce) VALUES (${panier.pk_idPanier}, ${panier.nomPa}, ${panier.quantitePa}, ${panier.adressePanier}, ${panier.typePa}, ${panier.fk_idAnnonce})`
   );
 
   let message = 'Error in creating panier';
@@ -43,7 +43,7 @@ async function create(panier){
 
 async function update(id, panier){
   const result = await db.query(
-    `UPDATE Panier SET pk_idPanier = '${panier.pk_idPanier}', nomPa = '${panier.nomPa}', quantitePa = '${panier.quantitePa}', typePa = '${panier.typePa}', fk_idAnnonce = '${panier.fk_idAnnonce}' WHERE Panier.pk_idPanier = ${id};` 
+    `UPDATE Panier SET pk_idPanier = '${panier.pk_idPanier}', nomPa = '${panier.nomPa}', quantitePa = '${panier.quantitePa}', adressePanier = '${panier.adressePanier}', typePa = '${panier.typePa}', fk_idAnnonce = '${panier.fk_idAnnonce}' WHERE Panier.pk_idPanier = ${id};` 
   );
 
   let message = 'Error in updating panier';
