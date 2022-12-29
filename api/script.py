@@ -120,7 +120,7 @@ def ecriture_services(tables):
 
 
 if __name__ == '__main__':
-	tables = process_sql_file("../../EtuBrestFoodv7.sql" )
+	tables = process_sql_file("../../EtuBrestFoodv8.sql" )
 	print(tables)
 	#ecriture_routes(tables)
 	#ecriture_services(tables)

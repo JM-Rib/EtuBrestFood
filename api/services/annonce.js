@@ -29,7 +29,7 @@ async function getOne(id){
 
 async function create(annonce){
   const result = await db.query(
-    `INSERT INTO Annonce (description, photo) VALUES (${annonce.description}, ${annonce.photo})`
+    `INSERT INTO Annonce (description, photo, fk_idPanier) VALUES ("${annonce.description}", "${annonce.photo}", ${annonce.fk_idPanier})`
   );
 
   let message = 'Error in creating annonce';
@@ -43,7 +43,7 @@ async function create(annonce){
 
 async function update(id, annonce){
   const result = await db.query(
-    `UPDATE Annonce SET pk_idAnnonce = '${annonce.pk_idAnnonce}', description = '${annonce.description}', photo = '${annonce.photo}' WHERE Annonce.pk_idAnnonce = ${id};` 
+    `UPDATE Annonce SET pk_idAnnonce = '${annonce.pk_idAnnonce}', description = '${annonce.description}', photo = '${annonce.photo}', fk_idPanier = '${annonce.fk_idPanier}' WHERE Annonce.pk_idAnnonce = ${id};` 
   );
 
   let message = 'Error in updating annonce';
