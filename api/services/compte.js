@@ -28,12 +28,12 @@ async function getOne(id){
 }
 
 async function create(compte){
-  console.log(`INSERT INTO Compte (pk_idCompte, email, motDePasse, dateCreation, etat, supprimme) VALUES (${compte.pk_idCompte}, ${compte.email}, ${compte.motDePasse}, ${compte.dateCreation}, ${compte.etat}, ${compte.supprimme})`);
+  console.log(`INSERT INTO Compte (pk_idCompte, email, motDePasse, dateCreation, desactive, supprimme) VALUES (${compte.pk_idCompte}, ${compte.email}, ${compte.motDePasse}, ${compte.dateCreation}, ${compte.desactive}, ${compte.supprimme})`);
 
   const result = await db.query(
-    `INSERT INTO Compte ( email, motDePasse, dateCreation, etat, supprimme) 
+    `INSERT INTO Compte ( email, motDePasse, dateCreation, desactive, supprimme) 
     VALUES
-    ( "${compte.email}", "${compte.motDePasse}", "${compte.dateCreation}", ${compte.etat}, ${compte.supprimme})`
+    ( "${compte.email}", "${compte.motDePasse}", "${compte.dateCreation}", ${compte.desactive}, ${compte.supprimme})`
   );
 
   let message = 'Error in creating compte';
@@ -49,7 +49,7 @@ async function update(id, compte){
   const result = await db.query(
     `UPDATE Compte 
     SET pk_idCompte = '${compte.pk_idCompte}', email = '${compte.email}', motDePasse = '${compte.motDePasse}',
-    dateCreation = '${compte.dateCreation}', etat = '${compte.etat}', supprimme = '${compte.supprimme}' 
+    dateCreation = '${compte.dateCreation}', desactive = '${compte.desactive}', supprimme = '${compte.supprimme}' 
     WHERE Compte.pk_idCompte = ${id};` 
   );
 

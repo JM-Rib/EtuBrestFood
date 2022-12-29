@@ -29,7 +29,7 @@ async function getOne(id){
 
 async function create(etudiant){
   const result = await db.query(
-    `INSERT INTO Etudiant (nomEtu, prenomEtu, nTelEtu, numeroEtu, fk_idCompte) VALUES ("${etudiant.nomEtu}", "${etudiant.prenomEtu}", "${etudiant.nTelEtu}", "${etudiant.numeroEtu}", ${etudiant.fk_idCompte})`
+    `INSERT INTO Etudiant (nomEtu, prenomEtu, nTelEtu, numeroEtu, fk_idCompte) VALUES (${etudiant.nomEtu}, ${etudiant.prenomEtu}, ${etudiant.nTelEtu}, ${etudiant.numeroEtu}, ${etudiant.fk_idCompte})`
   );
 
   let message = 'Error in creating etudiant';
