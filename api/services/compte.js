@@ -89,11 +89,23 @@ async function login(compte){
   }
 }
 
+async function getId(email){
+  const rows = await db.query(
+    `SELECT pk_idCompte FROM Compte WHERE email="${email}"`
+  );
+  const data = helper.emptyOrRows(rows);
+
+  return {
+    data
+  }
+}
+
 module.exports = {
   getMultiple,
   getOne,
   create,
   update,
   remove,
-  login
+  login,
+  getId
 }

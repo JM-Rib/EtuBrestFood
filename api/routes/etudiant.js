@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const etudiant = require("../services/etudiant");
+const compte = require("../services/compte");
 
 /* GET Etudiant */
 router.get('/', async function(req, res, next) {
@@ -51,5 +52,26 @@ router.delete('/:id', async function(req, res, next) {
     next(err);
   }
 });
+
+/* POST new compte Etudiant */
+router.post('/new', async function(req, res, next) {
+  try {
+    await compte.create(req.body);
+  } catch (err) {
+    console.error(`Error while creating compte Etudiant`, err.message);
+    next(err);
+  }
+
+  reponse = await compte.getId(req.body.email);
+  req.body.fk_idCompte = reponse.data[0].pk_idCompte;
+
+  try {
+    res.json(await etudiant.create(req.body));
+  } catch (err) {
+    console.error(`Error while creating compte Etudiant`, err.message);
+    next(err);
+  }
+});
+
 
 module.exports = router;
