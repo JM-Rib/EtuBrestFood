@@ -29,7 +29,7 @@ async function getOne(id){
 
 async function create(partenaire){
   const result = await db.query(
-    `INSERT INTO Partenaire (typePart, nomPart, prenomPart, nTelPart, adressePart, fk_idCompte) VALUES (${partenaire.typePart}, ${partenaire.nomPart}, ${partenaire.prenomPart}, ${partenaire.nTelPart}, ${partenaire.adressePart}, ${partenaire.fk_idCompte})`
+    `INSERT INTO Partenaire (typePart, nomPart, prenomPart, nTelPart, adressePart, fk_idCompte) VALUES ("${partenaire.typePart}", "${partenaire.nomPart}", "${partenaire.prenomPart}", "${partenaire.nTelPart}", "${partenaire.adressePart}", ${partenaire.fk_idCompte})`
   );
 
   let message = 'Error in creating partenaire';
@@ -69,10 +69,22 @@ async function remove(id){
   return {message};
 }
 
+async function getNom(id){
+  const rows = await db.query(
+    `SELECT nomPart, prenomPart FROM Partenaire WHERE pk_idPartenaire=${id}`
+  );
+  const data = helper.emptyOrRows(rows);
+
+  return {
+    data
+  }
+}
+
 module.exports = {
   getMultiple,
   getOne,
   create,
   update,
-  remove
+  remove,
+  getNom
 }
