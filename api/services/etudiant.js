@@ -69,10 +69,22 @@ async function remove(id){
   return {message};
 }
 
+async function getNom(id){
+  const rows = await db.query(
+    `SELECT nomEtu, prenomEtu FROM Etudiant WHERE pk_idEtudiant=${id}`
+  );
+  const data = helper.emptyOrRows(rows);
+
+  return {
+    data
+  }
+}
+
 module.exports = {
   getMultiple,
   getOne,
   create,
   update,
-  remove
+  remove,
+  getNom
 }

@@ -73,5 +73,15 @@ router.post('/new', async function(req, res, next) {
   }
 });
 
+/* GET nom & prenom d'un Etudiant*/
+router.get('/nom/:id', async function(req, res, next) {
+  try {
+    res.json(await etudiant.getNom(req.params.id));
+  } catch (err) {
+    console.error(`Error while getting Etudiant nom & prenom`, err.message);
+    next(err);
+  }
+});
+
 
 module.exports = router;
