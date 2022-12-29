@@ -29,7 +29,7 @@ async function getOne(id){
 
 async function create(produit){
   const result = await db.query(
-    `INSERT INTO Produit (pk_idProduit, titrePro, quantiteProEnStock) VALUES (${produit.pk_idProduit}, ${produit.titrePro}, ${produit.quantiteProEnStock})`
+    `INSERT INTO Produit (titrePro, quantiteProEnStock) VALUES (${produit.titrePro}, ${produit.quantiteProEnStock})`
   );
 
   let message = 'Error in creating produit';

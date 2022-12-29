@@ -29,7 +29,7 @@ async function getOne(id){
 
 async function create(partenaire){
   const result = await db.query(
-    `INSERT INTO Partenaire (pk_idPartenaire, typePart, nomPart, prenomPart, nTelPart, adressePart, fk_idCompte) VALUES (${partenaire.pk_idPartenaire}, ${partenaire.typePart}, ${partenaire.nomPart}, ${partenaire.prenomPart}, ${partenaire.nTelPart}, ${partenaire.adressePart}, ${partenaire.fk_idCompte})`
+    `INSERT INTO Partenaire (typePart, nomPart, prenomPart, nTelPart, adressePart, fk_idCompte) VALUES (${partenaire.typePart}, ${partenaire.nomPart}, ${partenaire.prenomPart}, ${partenaire.nTelPart}, ${partenaire.adressePart}, ${partenaire.fk_idCompte})`
   );
 
   let message = 'Error in creating partenaire';

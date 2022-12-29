@@ -29,7 +29,7 @@ async function getOne(id){
 
 async function create(annonce){
   const result = await db.query(
-    `INSERT INTO Annonce (pk_idAnnonce, description, photo) VALUES (${annonce.pk_idAnnonce}, ${annonce.description}, ${annonce.photo})`
+    `INSERT INTO Annonce (description, photo) VALUES (${annonce.description}, ${annonce.photo})`
   );
 
   let message = 'Error in creating annonce';

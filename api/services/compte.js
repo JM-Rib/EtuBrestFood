@@ -31,9 +31,9 @@ async function create(compte){
   console.log(`INSERT INTO Compte (pk_idCompte, email, motDePasse, dateCreation, etat, supprimme) VALUES (${compte.pk_idCompte}, ${compte.email}, ${compte.motDePasse}, ${compte.dateCreation}, ${compte.etat}, ${compte.supprimme})`);
 
   const result = await db.query(
-    `INSERT INTO Compte (pk_idCompte, email, motDePasse, dateCreation, etat, supprimme) 
+    `INSERT INTO Compte ( email, motDePasse, dateCreation, etat, supprimme) 
     VALUES
-    (${compte.pk_idCompte}, "${compte.email}", "${compte.motDePasse}", "${compte.dateCreation}", ${compte.etat}, ${compte.supprimme})`
+    ( "${compte.email}", "${compte.motDePasse}", "${compte.dateCreation}", ${compte.etat}, ${compte.supprimme})`
   );
 
   let message = 'Error in creating compte';

@@ -29,7 +29,7 @@ async function getOne(id){
 
 async function create(panier){
   const result = await db.query(
-    `INSERT INTO Panier (pk_idPanier, nomPa, quantitePa, adressePanier, typePa, fk_idAnnonce) VALUES (${panier.pk_idPanier}, ${panier.nomPa}, ${panier.quantitePa}, ${panier.adressePanier}, ${panier.typePa}, ${panier.fk_idAnnonce})`
+    `INSERT INTO Panier (nomPa, quantitePa, adressePanier, typePa, fk_idAnnonce) VALUES (${panier.nomPa}, ${panier.quantitePa}, ${panier.adressePanier}, ${panier.typePa}, ${panier.fk_idAnnonce})`
   );
 
   let message = 'Error in creating panier';

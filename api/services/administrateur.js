@@ -29,7 +29,7 @@ async function getOne(id){
 
 async function create(administrateur){
   const result = await db.query(
-    `INSERT INTO Administrateur (pk_idAdministrateur, login, mdp, fk_idCompte) VALUES (${administrateur.pk_idAdministrateur}, ${administrateur.login}, ${administrateur.mdp}, ${administrateur.fk_idCompte})`
+    `INSERT INTO Administrateur (login, mdp, fk_idCompte) VALUES (${administrateur.login}, ${administrateur.mdp}, ${administrateur.fk_idCompte})`
   );
 
   let message = 'Error in creating administrateur';

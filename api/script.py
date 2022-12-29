@@ -70,15 +70,16 @@ def ecriture_services(tables):
 		valuesElements = "("
 		firstVariable = 1
 		for variable in tables[i+1]:
-			if firstVariable == 0:
-				intoElements += ", " #adds comma before each variable (unless it's the first one)
-				valuesElements += ", "
-			else:
-				firstVariable = 0 #no comma inserted before first variable 
+			
+			if "pk_id" not in variable:
+				if firstVariable == 0:
+					intoElements += ", " #adds comma before each variable (unless it's the first one)
+					valuesElements += ", "
+				else:
+					firstVariable = 0 #no comma inserted before first variable 
 
-			intoElements += variable
-
-			valuesElements += "${" + fichier.replace("'", "") + "." + variable + "}"
+				intoElements += variable
+				valuesElements += "${" + fichier.replace("'", "") + "." + variable + "}"
 			
 		intoElements += ")"
 		valuesElements += ")"
@@ -119,7 +120,7 @@ def ecriture_services(tables):
 
 
 if __name__ == '__main__':
-	tables = process_sql_file("../../EtuBrestFoodv5.sql" )
+	tables = process_sql_file("../../EtuBrestFoodv6.sql" )
 	print(tables)
 	#ecriture_routes(tables)
 	#ecriture_services(tables)
