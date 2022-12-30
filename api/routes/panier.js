@@ -52,4 +52,14 @@ router.delete('/:id', async function(req, res, next) {
   }
 });
 
+/* POST Panier */
+router.post('/addProduit', async function(req, res, next) {
+  try {
+    res.json(await panier.addProduit(req.body));
+  } catch (err) {
+    console.error(`Error while creating Panier`, err.message);
+    next(err);
+  }
+});
+
 module.exports = router;

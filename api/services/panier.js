@@ -29,7 +29,7 @@ async function getOne(id){
 
 async function create(panier){
   const result = await db.query(
-    `INSERT INTO Panier (nomPa, quantitePa, adressePanier, typePa) VALUES (${panier.nomPa}, ${panier.quantitePa}, ${panier.adressePanier}, ${panier.typePa})`
+    `INSERT INTO Panier (nomPa, quantitePa, adressePa, typePa) VALUES ("${panier.nomPa}", ${panier.quantitePa}, "${panier.adressePa}", "${panier.typePa}")`
   );
 
   let message = 'Error in creating panier';
@@ -43,7 +43,7 @@ async function create(panier){
 
 async function update(id, panier){
   const result = await db.query(
-    `UPDATE Panier SET pk_idPanier = '${panier.pk_idPanier}', nomPa = '${panier.nomPa}', quantitePa = '${panier.quantitePa}', adressePanier = '${panier.adressePanier}', typePa = '${panier.typePa}' WHERE Panier.pk_idPanier = ${id};` 
+    `UPDATE Panier SET pk_idPanier = '${panier.pk_idPanier}', nomPa = '${panier.nomPa}', quantitePa = '${panier.quantitePa}', adressePa = '${panier.adressePa}', typePa = '${panier.typePa}' WHERE Panier.pk_idPanier = ${id};` 
   );
 
   let message = 'Error in updating panier';
@@ -69,10 +69,25 @@ async function remove(id){
   return {message};
 }
 
+async function addProduit(contient){
+  const result = await db.query(
+    `INSERT INTO Contient (fk_idProduit, quantiteProDansPa, fk_idPanier) VALUES (${contient.fk_idProduit}, ${contient.quantiteProDansPa}, ${contient.fk_idPanier})`
+  );
+
+  let message = 'Error in creating contient';
+
+  if (result.affectedRows) {
+    message = 'contient created successfully';
+  }
+
+  return {message};
+}
+
 module.exports = {
   getMultiple,
   getOne,
   create,
   update,
-  remove
+  remove,
+  addProduit
 }
