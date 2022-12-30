@@ -83,4 +83,14 @@ router.get('/nom/:id', async function(req, res, next) {
   }
 });
 
+/* POST nouveauDon d'un partenaire */
+router.post('/nouveauDon', async function(req, res, next) {
+  try {
+    res.json(await partenaire.nouveauDon(req.body));
+  } catch (err) {
+    console.error(`Error while creating Panier`, err.message);
+    next(err);
+  }
+});
+
 module.exports = router;

@@ -80,11 +80,29 @@ async function getNom(id){
   }
 }
 
+async function nouveauDon(offre_des){
+  offre_des.dateDon = new Date().toJSON().slice(0,10);
+  console.log(offre_des.dateDon);
+  const result = await db.query(
+    `INSERT INTO Offre_des (fk_idProduit, fk_idPartenaire, dateDon, quantiteProDonnes ) VALUES (${offre_des.fk_idProduit}, ${offre_des.fk_idPartenaire}, "${offre_des.dateDon}", ${offre_des.quantiteProDonnes})`
+  );
+
+  let message = 'Error in creating offre_des';
+
+  if (result.affectedRows) {
+    message = 'offre_des created successfully';
+  }
+
+  return {message};
+}
+
+
 module.exports = {
   getMultiple,
   getOne,
   create,
   update,
   remove,
-  getNom
+  getNom,
+  nouveauDon
 }
