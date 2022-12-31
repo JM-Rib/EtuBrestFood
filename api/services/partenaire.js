@@ -97,10 +97,12 @@ async function nouveauDon(offre_des){
 
 async function afficheDons(id){
   const rows = await db.query(
-    `SELECT produit.titrePro, offre_des.dateDon, offre_des.quantiteProDonnes  FROM produit
-      JOIN offre_des on offre_des.fk_idProduit = produit.pk_idProduit
-      JOIN partenaire on partenaire.pk_idPartenaire = offre_des.fk_idPartenaire
-    WHERE partenaire.pk_idPartenaire = ${id};`
+    `SELECT produit.titrePro, offre_des.dateDon, offre_des.quantiteProDonnes, offre.recupParEtu FROM offre
+      JOIN panier on offre.fk_idPanier = panier.pk_idPanier
+      JOIN contient on panier.pk_idPanier = contient.fk_idPanier
+      RIGHT JOIN produit on contient.fk_idProduit = produit.pk_idProduit
+      JOIN offre_des on produit.pk_idProduit = offre_des.fk_idProduit
+    WHERE offre_des.fk_idPartenaire = ${id};`
   );
   const data = helper.emptyOrRows(rows);
 
