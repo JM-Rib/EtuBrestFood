@@ -83,5 +83,15 @@ router.get('/nom/:id', async function(req, res, next) {
   }
 });
 
+/* GET Etudiant spécifique*/
+router.get('/getOffres/:id', async function(req, res, next) {
+  try {
+    res.json(await etudiant.getOffres(req.params.id));
+  } catch (err) {
+    console.error(`Error while getting offres of Etudiant`, err.message);
+    next(err);
+  }
+});
+
 
 module.exports = router;

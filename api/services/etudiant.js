@@ -80,11 +80,25 @@ async function getNom(id){
   }
 }
 
+async function getOffres(id){
+  const rows = await db.query(
+    `SELECT panier.nomPa, panier.typePa, panier.adressePa, offre.dateheure, offre.recupParEtu FROM offre
+      JOIN panier on offre.fk_idPanier = panier.pk_idPanier
+    WHERE offre.fk_idEtudiant = ${id};`
+  );
+  const data = helper.emptyOrRows(rows);
+
+  return {
+    data
+  }
+}
+
 module.exports = {
   getMultiple,
   getOne,
   create,
   update,
   remove,
-  getNom
+  getNom,
+  getOffres
 }

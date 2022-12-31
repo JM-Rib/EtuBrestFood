@@ -29,7 +29,7 @@ async function getOne(id){
 
 async function create(offre){
   const result = await db.query(
-    `INSERT INTO Offre (dateheure, recupParEtu, fk_idEtudiant, fk_idPanier) VALUES (${offre.dateheure}, ${offre.recupParEtu}, ${offre.fk_idEtudiant}, ${offre.fk_idPanier})`
+    `INSERT INTO Offre (dateheure, recupParEtu, fk_idEtudiant, fk_idPanier) VALUES ("${offre.dateheure}", ${offre.recupParEtu}, ${offre.fk_idEtudiant}, ${offre.fk_idPanier})`
   );
 
   let message = 'Error in creating offre';
