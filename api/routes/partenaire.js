@@ -93,4 +93,14 @@ router.post('/nouveauDon', async function(req, res, next) {
   }
 });
 
+/* GET Dons */
+router.get('/afficheDons/:id', async function(req, res, next) {
+  try {
+    res.json(await partenaire.afficheDons(req.params.id));
+  } catch (err) {
+    console.error(`Error while getting Partenaire`, err.message);
+    next(err);
+  }
+});
+
 module.exports = router;

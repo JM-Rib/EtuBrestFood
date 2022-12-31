@@ -82,7 +82,6 @@ async function getNom(id){
 
 async function nouveauDon(offre_des){
   offre_des.dateDon = new Date().toJSON().slice(0,10);
-  console.log(offre_des.dateDon);
   const result = await db.query(
     `INSERT INTO Offre_des (fk_idProduit, fk_idPartenaire, dateDon, quantiteProDonnes ) VALUES (${offre_des.fk_idProduit}, ${offre_des.fk_idPartenaire}, "${offre_des.dateDon}", ${offre_des.quantiteProDonnes})`
   );
@@ -96,6 +95,20 @@ async function nouveauDon(offre_des){
   return {message};
 }
 
+async function afficheDons(id){
+  const rows = await db.query(
+    `SELECT produit.titrePro, offre_des.dateDon, offre_des.quantiteProDonnes  FROM produit
+      JOIN offre_des on offre_des.fk_idProduit = produit.pk_idProduit
+      JOIN partenaire on partenaire.pk_idPartenaire = offre_des.fk_idPartenaire
+    WHERE partenaire.pk_idPartenaire = ${id};`
+  );
+  const data = helper.emptyOrRows(rows);
+
+  return {
+    data
+  }
+}
+
 
 module.exports = {
   getMultiple,
@@ -104,5 +117,6 @@ module.exports = {
   update,
   remove,
   getNom,
-  nouveauDon
+  nouveauDon,
+  afficheDons
 }
