@@ -74,7 +74,7 @@ const Login = () => {
             ) : (
                 <section>
                     <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
-                    <h1>Sign In</h1>
+                    <h1>Connexion</h1>
                     <form onSubmit={handleSubmit}>
                         <label htmlFor="email">Email:</label>
                         <input
@@ -95,15 +95,8 @@ const Login = () => {
                             value={motDePasse}
                             required
                         />
-                        <button>Sign In</button>
+                        <button>Connexion</button>
                     </form>
-                    <p>
-                        Need an Account?<br />
-                        <span className="line">
-                            {/*put router link here*/}
-                            <a href="#">Sign Up</a>
-                        </span>
-                    </p>
                 </section>
             )}
         </>
