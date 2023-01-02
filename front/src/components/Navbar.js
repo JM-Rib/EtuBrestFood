@@ -19,7 +19,7 @@ function Navbar() {
 			<nav ref={navRef}>
 				<a href="/#">Acceuil</a>
 				<a href="/#">Inscription</a>
-				<a href="/#">Connexion</a>
+				<a href="http://localhost:3000/pageLogin">Connexion</a>
 				<a href="/#">Contacts</a>
 				<button
 					className="nav-btn nav-close-btn"
