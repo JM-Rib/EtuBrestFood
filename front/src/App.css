@@ -2,21 +2,7 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
 
-.grid-container{
-  display: grid ;
-  grid-row: auto;
-}
-
-.logo {
-  height: 100px;
-  margin-right: 100%;
-  margin-left: 0px;
-}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
