@@ -65,10 +65,10 @@ const Login = () => {
         <>
             {success ? (
                 <section>
-                    <h1>You are logged in!</h1>
+                    <h1>Vous êtes connecté !</h1>
                     <br />
                     <p>
-                        <a href="http://localhost:3000">Go to Home</a>
+                        <a href="http://localhost:3000">Retour à l'acceuil</a>
                     </p>
                 </section>
             ) : (
