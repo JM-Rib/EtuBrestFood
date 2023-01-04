@@ -28,7 +28,7 @@ async function getOne(id){
 }
 
 async function create(compte){
-  console.log(`INSERT INTO Compte (pk_idCompte, email, motDePasse, dateCreation, desactive, supprimme) VALUES (${compte.pk_idCompte}, ${compte.email}, ${compte.motDePasse}, ${compte.dateCreation}, ${compte.desactive}, ${compte.supprimme})`);
+  console.log(`INSERT INTO Compte ( email, motDePasse, dateCreation, desactive, supprimme) VALUES ( ${compte.email}, ${compte.motDePasse}, ${compte.dateCreation}, ${compte.desactive}, ${compte.supprimme})`);
 
   const result = await db.query(
     `INSERT INTO Compte ( email, motDePasse, dateCreation, desactive, supprimme) 

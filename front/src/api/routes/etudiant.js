@@ -55,6 +55,11 @@ router.delete('/:id', async function(req, res, next) {
 
 /* POST new compte Etudiant */
 router.post('/new', async function(req, res, next) {
+  var date = new Date();
+  req.body.dateCreation = date.getUTCFullYear() + '-' + date.getUTCMonth() + 1  + '-' + date.getUTCDate();
+  req.body.desactive = 0;
+  req.body.supprimme = 0;
+  
   try {
     await compte.create(req.body);
   } catch (err) {

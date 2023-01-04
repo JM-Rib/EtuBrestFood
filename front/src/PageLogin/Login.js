@@ -1,8 +1,8 @@
 import React from 'react';
-import Navbar from "../Components/Navbar"
+//import Navbar from "../Components/Navbar"
 import { useRef, useState, useEffect, useContext } from 'react';
 import AuthContext from "../Context/AuthProvider";
-import '../Styles/login.css';
+//import '../Styles/login.css';
 
 import axios from '../api/axios';
 const LOGIN_URL = '/compte/login';
@@ -46,7 +46,7 @@ const Login = () => {
             setmotDePasse('');
             setSuccess(true);
         } catch (err) {
-            if(rep == "TRUE"){
+            if(rep === "TRUE"){
                 setSuccess(true);
             } else if (!err?.response) {
                 setErrMsg('No Server Response');
@@ -62,7 +62,7 @@ const Login = () => {
     }
 
     return (
-        <>
+        <div className='Login'>
             {success ? (
                 <section>
                     <h1>Vous êtes connecté !</h1>
@@ -99,7 +99,7 @@ const Login = () => {
                     </form>
                 </section>
             )}
-        </>
+        </div>
     )
 }
 
