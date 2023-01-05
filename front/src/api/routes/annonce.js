@@ -52,4 +52,14 @@ router.delete('/:id', async function(req, res, next) {
   }
 });
 
+/* GET Annonce à partir d'un id de panier */
+router.get('/duPanier/:id', async function(req, res, next) {
+  try {
+    res.json(await annonce.getDuPanier(req.params.id));
+  } catch (err) {
+    console.error(`Error while getting Annonce from specific panier`, err.message);
+    next(err);
+  }
+});
+
 module.exports = router;

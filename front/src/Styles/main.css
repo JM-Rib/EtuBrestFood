@@ -201,3 +201,30 @@ button {
 .line {
     display: inline-block;
 }
+
+/* paniers */
+
+.Panier img { grid-area: photo; }
+.Panier Card.Body { grid-area: card; }
+
+.Panier-div{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 1rem 0.5rem;
+}
+
+.Panier img{
+	width: 18rem; /* width of container */
+    height: 200px; /* height of container */
+    object-fit: cover;
+}
+
+.Acceuil-div{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 1rem 0.5rem;
+	grid-template-rows: 80px 200px;
+}
+

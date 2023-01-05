@@ -7,7 +7,12 @@ import AuthContext from "../Context/AuthProvider";
 import axios from '../api/axios';
 const LOGIN_URL = '/compte/login';
 
-const Login = () => {
+function Login(){
+
+    /*function handleChangeStateClick(props) {
+        onChangeSomeState(1);
+    }*/
+
     const { setAuth } = useContext(AuthContext);
     const emailRef = useRef();
     const errRef = useRef();
@@ -38,7 +43,12 @@ const Login = () => {
             );
             console.log(JSON.stringify(response?.data));
             var rep = response?.data.data[0]['resultat'];
+            var idrep = (response?.data.data[0]['pk_idCompte']);
             //console.log(JSON.stringify(response));
+            // store the user in localStorage
+            localStorage.setItem("user", JSON.stringify(response?.data.data[0]));
+            console.log(response?.data);
+
             const accessToken = response?.data?.accessToken;
             const roles = response?.data?.roles;
             setAuth({ email, motDePasse, roles, accessToken });
@@ -48,6 +58,7 @@ const Login = () => {
         } catch (err) {
             if(rep === "TRUE"){
                 setSuccess(true);
+                
             } else if (!err?.response) {
                 setErrMsg('No Server Response');
             } else if (err.response?.status === 400) {
@@ -63,7 +74,7 @@ const Login = () => {
 
     return (
         <div className='Login'>
-            {success ? (
+            {success ? ( 
                 <section>
                     <h1>Vous êtes connecté !</h1>
                     <br />

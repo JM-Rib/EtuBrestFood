@@ -6,7 +6,7 @@ import logo from '../logo.png';
 //<img src={logo} className="logo" alt="logo" />
 
 
-function Navbar() {
+function Navbar(props) {
 	const navRef = useRef();
 
 	const showNavbar = () => {
@@ -19,8 +19,8 @@ function Navbar() {
 				<img src={logo} className="logo" alt="logo" />
 				<nav ref={navRef}>
 					<a href="/#">Acceuil</a>
-					<a href="http://localhost:3000/pageInscription">Inscription</a>
-					<a href="http://localhost:3000/pageLogin">Connexion</a>
+					{props.idCompte == null ? (<a href="http://localhost:3000/pageInscription">Inscription</a>) : (<a href="http://localhost:3000/pagePaniers">Paniers</a>)}
+					{props.idCompte == null ? (<a href="http://localhost:3000/pageLogin">Connexion</a>) : (<a href="http://localhost:3000/pageLogout">Deconnexion</a>)}
 					<a href="/#">Contacts</a>
 					<button
 						className="nav-btn nav-close-btn"

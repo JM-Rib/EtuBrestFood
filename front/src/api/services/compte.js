@@ -76,11 +76,13 @@ async function remove(id){
   return {message};
 }
 
+/*`SELECT Compte.pk_idCompte, CASE WHEN EXISTS(SELECT * FROM Compte WHERE Compte.email = "${compte.email}" AND Compte.motDePasse = "${compte.motDePasse}")THEN "TRUE" ELSE "FALSE" END
+    as resultat;`*/
 async function login(compte){
   //const offset = helper.getOffset(page, config.listPerPage);
   const rows = await db.query(
-    `SELECT CASE WHEN EXISTS(SELECT * FROM Compte WHERE Compte.email = "${compte.email}" AND Compte.motDePasse = "${compte.motDePasse}")THEN "TRUE" ELSE "FALSE" END
-    as resultat;`
+    `SELECT (CASE WHEN EXISTS(SELECT * FROM Compte WHERE Compte.email = "${compte.email}" AND Compte.motDePasse = "${compte.motDePasse}" ) THEN "TRUE"  ELSE "FALSE"  END) as resultat,
+      pk_idCompte FROM Compte WHERE Compte.email = "${compte.email}";`
   );
   const data = helper.emptyOrRows(rows);
 
