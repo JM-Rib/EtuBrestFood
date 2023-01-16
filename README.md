@@ -1,6 +1,6 @@
 # EtuBrestFood
 
-Ce repo fut crée dans le cadre d'un projet étudiant ["etubrestfood"](https://github.com/facebook/create-react-app), ayant pour but de simuler l'application web d'une structure associative fictive, offrant une aide alimentaire aux étudiants.\
+Ce repo fut crée dans le cadre d'un projet étudiant , ayant pour but de simuler l'application web d'une structure associative fictive nommée ["etubrestfood"](https://github.com/facebook/create-react-app), offrant une aide alimentaire aux étudiants.
 
 L'application web a pour objectif de gérer les inscriptions des étudiants, les connexions au site, la consultation des offres disponibles et les commandes de paniers alimentaires par les étudiants.\
 Nous avons fait le choix d'utiliser react pour la partie frontend et node pour la partie backend du site.
