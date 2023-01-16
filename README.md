@@ -8,7 +8,7 @@ Ces choix se justifient par notre familiarité avec ces outils mais aussi par la
 
 ## Configuration de la partie react
 
-Sous le répertoire front, lancer d'abord la commande suivante afin d'installer toutes les dépendances requises:
+Sous le répertoire `front`, lancer d'abord la commande suivante afin d'installer toutes les dépendances requises:
 
 ### `npm install`
 
@@ -20,7 +20,7 @@ L'application se lancera à l'adresse [http://localhost:3000](http://localhost:3
 
 ## Configuration de la partie node
 
-Sous le répertoire front/src/api, lancer d'abord la commande suivante afin d'installer toutes les dépendances requises:
+Sous le répertoire `front/src/api`, lancer d'abord la commande suivante afin d'installer toutes les dépendances requises:
 
 ### `npm install`
 
