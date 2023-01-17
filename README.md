@@ -6,7 +6,7 @@
   
 Ce repo fut crée dans le cadre d'un projet étudiant , ayant pour but de développer l'application web d'une structure associative fictive nommée ["etubrestfood"](https://drive.google.com/file/d/1w0TKgJDsoypoLU_sBQp5gMMxhfLh0LV2/view?usp=sharing), offrant une aide alimentaire aux étudiants.
 
-L'association aurait pour rôle de récupérer les produit donnés par des partenaires (commerçants, producteurs, etc.) puis de les stocker dans un local associatif et permettre aux étudiants de réserver un panier 
+L'association aurait pour rôle de récupérer les produit donnés par des partenaires (commerçants, producteurs, etc.) puis de les stocker dans un local associatif et constituer différents types des paniers alimentaires. Ces paniers pourraient ensuite être réservés par des étudiants qui pourront aller les récupérer sur place. 
 
 L'application web a donc pour objectif de gérer les inscriptions des étudiants, les connexions au site, la consultation des offres disponibles et la commandes de paniers alimentaires par les étudiants.\
 Nous avons fait le choix d'utiliser react pour la partie frontend et nodejs pour la partie backend du site.
