@@ -13,7 +13,7 @@ Nous avons fait le choix d'utiliser react pour la partie frontend et nodejs pour
 Nous avons aussi choisi d'utiliser MariaDB pour notre base de données.\
 Ces choix se justifient par notre familiarité avec ces outils mais aussi par la rapidité d'implémentation grâce à la réutilisation de composants.
 
-Nous avons réalisé ce projet sur une période de 6 semaines à partir d'une méthode de développement hybride mélangeant de l'Agile et un cycle en V. Nous avons passé 3 semaines sur la rédaction du cahier des charges l'IHM et la Base de données, 2 semaines sur l'installation des outils et le développement, et 1 semaine sur le rapport et la présentation de soutenance.
+Nous avons réalisé ce projet sur une période de 6 semaines à partir d'une méthode de développement hybride mélangeant de l'Agile et un cycle en V. Nous avons passé 3 semaines sur la rédaction du cahier des charges, l'IHM et la Base de données, 2 semaines sur l'installation des outils et le développement, et 1 semaine sur le rapport et la présentation de soutenance.
 
 ## Routes de l'api REST
 
