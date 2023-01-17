@@ -4,7 +4,7 @@
 
 # EtuBrestFood
   
-Ce repo fut crée dans le cadre d'un projet étudiant , ayant pour but de développer l'application web d'une structure associative fictive nommée ["EtuBrestFood"](https://drive.google.com/file/d/1w0TKgJDsoypoLU_sBQp5gMMxhfLh0LV2/view?usp=sharing), offrant une aide alimentaire aux étudiants brestois.
+Ce repo fut crée dans le cadre d'un projet étudiant en Licence 3 à l'UBO Brest. Ce projet avait pour but de développer l'application web d'une structure associative fictive nommée ["EtuBrestFood"](https://drive.google.com/file/d/1w0TKgJDsoypoLU_sBQp5gMMxhfLh0LV2/view?usp=sharing), offrant une aide alimentaire aux étudiants brestois.
 
 L'association aurait pour rôle de récupérer les produit donnés par des partenaires (commerçants, producteurs, etc.) puis de les stocker dans un local associatif et constituer différents types des paniers alimentaires. Ces paniers pourraient ensuite être réservés par des étudiants qui pourront aller les récupérer sur place. 
 
@@ -12,6 +12,8 @@ L'application web a donc pour objectif de gérer les inscriptions des étudiants
 Nous avons fait le choix d'utiliser react pour la partie frontend et nodejs pour la partie backend du site.
 Nous avons aussi choisi d'utiliser MariaDB pour notre base de données.\
 Ces choix se justifient par notre familiarité avec ces outils mais aussi par la rapidité d'implémentation grâce à la réutilisation de composants.
+
+Nous avons réalisé ce projet sur une période de 6 semaines à partir d'une méthode de développement hybride mélangeant de l'Agile et un cycle en V. Nous avons passé 3 semaines sur la rédaction du cahier des charges l'IHM et la Base de données, 2 semaines sur l'installation des outils et le développement, et 1 semaine sur le rapport et la présentation de soutenance.
 
 ## Routes de l'api REST
 
