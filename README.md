@@ -1,6 +1,6 @@
 # EtuBrestFood
 
-[![etubrestfood-logotype][etubrestfood-logotype]](https://zupimages.net/viewer.php?id=23/03/7cv6.png)
+[![EtudBrestFood Logotype][etubrestfood-logotype]](https://zupimages.net/)
 
 Ce repo fut crée dans le cadre d'un projet étudiant , ayant pour but de créer l'application web d'une structure associative fictive nommée ["etubrestfood"](https://drive.google.com/file/d/1w0TKgJDsoypoLU_sBQp5gMMxhfLh0LV2/view?usp=sharing), offrant une aide alimentaire aux étudiants.
 
@@ -38,3 +38,7 @@ Puis executer cette commande afin de démarrer la partie frontend de l'applicati
 ### `npm start`
 
 L'application se lancera à l'adresse [http://localhost:8000](http://localhost:8000) dans votre navigateur.
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[etubrestfood-logotype]: viewer.php?id=23/03/7cv6.png
